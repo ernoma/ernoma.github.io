@@ -21,28 +21,28 @@ $(document).ready(function(){
 	var noiseLayer = L.geoJson(data, {
 	    style: function(feature) {
 		if (feature.properties.DB_LO == 45) {
-		    return { color: "#ffffcc" };
+		    return { fillColor: "#ffffcc", fillOpacity: 1.0, stroke: false };
 		}
 		else if (feature.properties.DB_LO == 50) {
-                    return { color: "#ffeda0" };
+                    return { fillColor: "#ffeda0", fillOpacity: 1.0, stroke: false };
                 }
 		else if (feature.properties.DB_LO == 55) {
-                    return { color: "#fed976" };
+                    return { fillColor: "#fed976", fillOpacity: 1.0, stroke: false };
                 }
 		else if (feature.properties.DB_LO == 60) {
-                    return { color: "#feb24c" };
+                    return { fillColor: "#feb24c", fillOpacity: 1.0, stroke: false };
                 }
 		else if (feature.properties.DB_LO == 65) {
-                    return { color: "#fd8d3c" };
+                    return { fillColor: "#fd8d3c", fillOpacity: 1.0, stroke: false };
                 }
 		else if (feature.properties.DB_LO == 70) {
-                    return { color: "#fc4e2a" };
+                    return { fillColor: "#fc4e2a", fillOpacity: 1.0, stroke: false };
                 }
 		else if (feature.properties.DB_LO == 75) {
-                    return { color: "#e31a1c" };
+                    return { fillColor: "#e31a1c", fillOpacity: 1.0, stroke: false };
                 }
 		else if (feature.properties.DB_LO == 80) {
-                    return { color: "#b10026" };
+                    return { fillColor: "#b10026", fillOpacity: 1.0, stroke: false };
                 }
 		else {
 		    console.log("Unknown DB_LO: " + feature.properties.DB_LO);
