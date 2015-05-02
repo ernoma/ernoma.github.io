@@ -23,25 +23,25 @@ $(document).ready(function(){
 		if (feature.properties.DB_LO == 45) {
 		    return { color: "#ffffcc" };
 		}
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 50) {
                     return { color: "#ffeda0" };
                 }
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 55) {
                     return { color: "#fed976" };
                 }
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 60) {
                     return { color: "#feb24c" };
                 }
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 65) {
                     return { color: "#fd8d3c" };
                 }
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 70) {
                     return { color: "#fc4e2a" };
                 }
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 75) {
                     return { color: "#e31a1c" };
                 }
-		else if (feature.properties.DB_LO == 45) {
+		else if (feature.properties.DB_LO == 80) {
                     return { color: "#b10026" };
                 }
 		else {
