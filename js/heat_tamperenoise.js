@@ -9,48 +9,11 @@ var mmlTaustaLayer = L.tileLayer('http://tiles.kartat.kapsi.fi/taustakartta/{z}/
 
 $(document).ready(function(){
 	
-    $.getJSON('/data/tampere_noise_2012_day.json', function(data) {
-	console.log('success');
-	
-	//console.log(JSON.parse(data));
-	
-	//console.log(data);
-	
-	// 45-50, 50-55, 55-60, 60-65, 65-70, 70-75, 75-80, 80-85
-
-	var noiseLayer = L.geoJson(data, {
-	    style: function(feature) {
-		if (feature.properties.DB_LO == 45) {
-		    return { fillColor: "#ffffcc", fillOpacity: 1.0, stroke: false };
-		}
-		else if (feature.properties.DB_LO == 50) {
-                    return { fillColor: "#ffeda0", fillOpacity: 1.0, stroke: false };
-                }
-		else if (feature.properties.DB_LO == 55) {
-                    return { fillColor: "#fed976", fillOpacity: 1.0, stroke: false };
-                }
-		else if (feature.properties.DB_LO == 60) {
-                    return { fillColor: "#feb24c", fillOpacity: 1.0, stroke: false };
-                }
-		else if (feature.properties.DB_LO == 65) {
-                    return { fillColor: "#fd8d3c", fillOpacity: 1.0, stroke: false };
-                }
-		else if (feature.properties.DB_LO == 70) {
-                    return { fillColor: "#fc4e2a", fillOpacity: 1.0, stroke: false };
-                }
-		else if (feature.properties.DB_LO == 75) {
-                    return { fillColor: "#e31a1c", fillOpacity: 1.0, stroke: false };
-                }
-		else if (feature.properties.DB_LO == 80) {
-                    return { fillColor: "#b10026", fillOpacity: 1.0, stroke: false };
-                }
-		else {
-		    console.log("Unknown DB_LO: " + feature.properties.DB_LO);
-		}
-	    }
-	});
-	
-	var map = L.map('map_canvas', {layers: [mmlTaustaLayer, noiseLayer]}).setView([INITIAL_LAT, INITIAL_LON], 12);
+    var noiseLayer = L.tileLayer.wms('http://opendata.navici.com/tampere/opendata/ows', {
+	layers: 'opendata:YV_MELU_Y_2012_KESKIAANI',
+	format: 'image/png'
+    };
+    
+    var map = L.map('map_canvas', {layers: [mmlTaustaLayer, noiseLayer]}).setView([INITIAL_LAT, INITIAL_LON], 12);
 		
-	});
 });
