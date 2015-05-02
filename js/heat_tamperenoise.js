@@ -11,7 +11,8 @@ $(document).ready(function(){
 	
     var noiseLayer = L.tileLayer.wms('http://opendata.navici.com/tampere/opendata/ows', {
 	layers: 'opendata:YV_MELU_Y_2012_KESKIAANI',
-	format: 'image/png'
+	format: 'image/png',
+	transparent: true
     });
     
     var map = L.map('map_canvas', {layers: [mmlTaustaLayer, noiseLayer]}).setView([INITIAL_LAT, INITIAL_LON], 12);
