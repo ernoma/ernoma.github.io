@@ -80,4 +80,49 @@ Meluselvitys, Tampereen kaupunki, <a href="http://www.tampere.fi/avoindata/lisen
     mapNight2030.sync(mapNight2012);
     mapNight2030.sync(mapDay2030);
 
+    var infoNight2012 = L.control();
+    infoNight2012.onAdd = function (map) {
+	this._div = L.DomUtil.create('div', 'feature_info'); // create a div with a class "info"
+	this.update();
+	return this._div;
+    }
+    infoNight2012.update = function (text) {
+	this._div.innerHTML = (text ? text : '');
+    };
+    var infoDay2012 = L.control();
+    infoDay2012.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'feature_info'); // create a div with a class "info"
+        this.update();
+        return this._div;
+    }
+    infoDay2012.update = function (text) {
+        this._div.innerHTML = (text ? text : '');
+    };
+    var infoDay2030 = L.control();
+    infoDay2030.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'feature_info'); // create a div with a class "info"
+        this.update();
+        return this._div;
+    }
+    infoDay2030.update = function (text) {
+        this._div.innerHTML = (text ? text : '');
+    };
+    var infoNight2030 = L.control();
+    infoNight2030.onAdd = function (map) {
+        this._div = L.DomUtil.create('div', 'feature_info'); // create a div with a class "info"
+        this.update();
+        return this._div;
+    }
+    infoNight2030.update = function (text) {
+        this._div.innerHTML = (text ? text : '');
+    };
+
+    infoNight2012.addTo(mapNight2012);
+    infoNight2012.update('Melu 2012, yöllä');
+    infoDay2012.addTo(mapDay2012);
+    infoDay2012.update('Melu 2012, päivällä');
+    infoDay2030.addTo(mapDay2030);
+    infoDay2030.update('Melu 2030, päivällä');
+    infoNight2030.addTo(mapNight2030);
+    infoNight2030.update('Melu 2030, yöllä');
 });
