@@ -1,0 +1,9 @@
+{
+    "description": "", 
+    "bounds": "23.53,61.4184,24.0381,61.7971", 
+    "minzoom": "10", 
+    "version": "1.0.0", 
+    "template": "", 
+    "maxzoom": "17", 
+    "name": "noise_tampere_2012_night"
+}

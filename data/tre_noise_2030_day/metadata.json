@@ -1,0 +1,11 @@
+{
+    "attribution": "", 
+    "description": "", 
+    "center": "23.7727,61.4971,12", 
+    "bounds": "23.53,61.4184,24.0381,61.7971", 
+    "minzoom": "10", 
+    "version": "1.0.0", 
+    "template": "", 
+    "maxzoom": "17", 
+    "name": "tre_noise_2030_day"
+}

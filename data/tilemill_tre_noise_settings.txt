@@ -1,0 +1,39 @@
+
+#tre_noise {
+  line-color:#594;
+  line-width:0;
+  polygon-opacity:1;
+  polygon-fill:#ae8;
+  
+  [DB_LO > 40] {
+    polygon-fill:#ffffcc;
+  }
+  [DB_LO > 45] {
+    polygon-fill:#ffeda0;
+  }
+  [DB_LO > 50] {
+    polygon-fill:#fed976;
+  }
+  [DB_LO > 55] {
+    polygon-fill:#feb24c;
+  }
+  [DB_LO > 60] {
+    polygon-fill:#fd8d3c;
+  }
+  [DB_LO > 65] {
+    polygon-fill:#fc4e2a;
+  }
+  [DB_LO > 70] {
+    polygon-fill:#e31a1c;
+  }
+  [DB_LO > 75] {
+    polygon-fill:#b10026;
+  }
+}
+
+center=23.7727,61.4971,12
+bounds=23.53,61.4184,24.0381,61.7971
+
+tre_noise_2012_
+
+zoom 10-17
