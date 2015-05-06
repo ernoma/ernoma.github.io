@@ -93,9 +93,11 @@ Meluselvitys, Tampereen kaupunki, <a href="http://www.tampere.fi/avoindata/lisen
 
     mapNight2012.addControl(L.control.zoom( { position: 'topright' } ));
     
-    setOpacityControlMap(mapNight2012);
+    L.Control.setOpacityControlMap(mapNight2012);
     var higherOpacity = new L.Control.higherOpacity();
     mapNight2012.addControl(higherOpacity);
+    //var opacitySlider = new L.Control.opacitySlider();
+    //mapNight2012.addControl(opacitySlider);
     var lowerOpacity = new L.Control.lowerOpacity();
     mapNight2012.addControl(lowerOpacity);
     //higherOpacity.setOpacityLayer(noiseLayerNight2012);
