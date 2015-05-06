@@ -79,10 +79,7 @@ $(document).ready(function(){
     var noiseLayerNight2030 = L.tileLayer(tilesURL, {
         minZoom: 10,
         maxZoom: 17,
-	attribution: '<br>Sisältää Maanmittauslaitoksen taustakartta-aineistoa, \
-<a href="http://www.maanmittauslaitos.fi/avoindata_lisenssi_versio1_20120501", \
-TMS: <a href="http://kartat.kapsi.fi/">kartat.kapsi.fi</a> |<br>\
-Meluselvitys, Tampereen kaupunki, <a href="http://www.tampere.fi/avoindata/lisenssi">lisenssi</a>'
+	attribution: 'Meluselvitys, Tampereen kaupunki, <a href="http://www.tampere.fi/avoindata/lisenssi">lisenssi</a>'
     });
 
 	
@@ -226,11 +223,39 @@ Meluselvitys, Tampereen kaupunki, <a href="http://www.tampere.fi/avoindata/lisen
     };
 
     infoNight2012.addTo(mapNight2012);
-    infoNight2012.update('Melu 2012, yöllä');
+    infoNight2012.update('Melu 2012 yöllä');
     infoDay2012.addTo(mapDay2012);
-    infoDay2012.update('Melu 2012, päivällä');
+    infoDay2012.update('Melu 2012 päivällä');
     infoDay2030.addTo(mapDay2030);
-    infoDay2030.update('Melu 2030, päivällä');
+    infoDay2030.update('Melu 2030 päivällä, ennuste');
     infoNight2030.addTo(mapNight2030);
-    infoNight2030.update('Melu 2030, yöllä');
+    infoNight2030.update('Melu 2030 yöllä, ennuste');
+
+    function getColor(i) {
+	return i == 0 ? '#ffeda0' :
+           i == 1 ? '#fed976' :
+           i == 2 ? '#feb24c' :
+           i == 3 ? '#fd8d3c' :
+           i == 4 ? '#fc4e2a' :
+           i == 5 ? '#e31a1c' :
+	    '#b10026';
+    }
+
+    var legend = L.control({position: 'topleft'});
+    legend.onAdd = function (map) {
+
+	var div = L.DomUtil.create('div', 'info legend');
+        var desibels = [45, 50, 55, 60, 65, 70, 75];
+
+    // loop through our density intervals and generate a label with a colored square for each interval
+	for (var i = 0; i < desibels.length; i++) {
+            div.innerHTML +=
+            '<i style="background:' + getColor(i) + '"></i> ' +
+		desibels[i] + ( desibels[i + 1] ? '&ndash;' + desibels[i + 1] + ' dB<br>' : '&ndash;80 dB');
+	}
+
+	return div;
+    };
+    legend.addTo(mapDay2012);
+
 });
