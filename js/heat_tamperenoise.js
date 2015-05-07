@@ -5,6 +5,16 @@ var INITIAL_LON = 23.766667;
 var baseLayersOfMaps = [[], [], [], []];
 var currentBaseLayerIndex = 0;
 
+var markerNight2012 = undefined;
+var markerDay2030 = undefined;
+var markerNight2030 = undefined;
+
+//$.getJSON('http://opendata.navici.com/tampere/opendata/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=opendata:YV_MELU_P_2012_KESKIAANI&outputFormat=json&srsName=EPSG:4326', function(data) {
+//    console.log('success');
+//    console.log(data);
+//});
+
+
 for (var i = 0; i < baseLayersOfMaps.length; i++) {
     var osmLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
@@ -230,6 +240,62 @@ Meluselvitys, Tampereen kaupunki, <a href="http://www.tampere.fi/avoindata/lisen
     infoDay2030.update('Melu 2030 päivällä, ennuste');
     infoNight2030.addTo(mapNight2030);
     infoNight2030.update('Melu 2030 yöllä, ennuste');
+
+    var searchControl = undefined;
+    
+    mapDay2012.addControl( searchControl = new L.Control.Search({
+	callData: okffiGeocoding,
+	filterJSON: filterGeocodingResult,
+	markerLocation: true,
+	autoType: false,
+	autoCollapse: true,
+	minLength: 2,
+	zoom: 10,
+	text: "Osoite...",
+	textCancel: "Peru",
+	textErr: "Osoitetta ei löytynyt",
+	zoom: {
+	    animate: false
+	},
+	circleLocation: false
+    }) );
+
+    searchControl._markerLoc.dragging.enable();
+    searchControl._markerLoc.on('move', function (e) {
+        if (markerNight2012 == undefined ) {
+            markerNight2012 = L.marker(searchControl._markerLoc.getLatLng(), { draggable: true} ).addTo(mapNight2012);
+            markerDay2030 = L.marker(searchControl._markerLoc.getLatLng(), { draggable: true}).addTo(mapDay2030);
+            markerNight2030 = L.marker(searchControl._markerLoc.getLatLng(), { draggable: true}).addTo(mapNight2030);
+
+	    markerNight2012.on('drag', function (e) {
+		searchControl._markerLoc.setLatLng(markerNight2012.getLatLng());
+		markerDay2030.setLatLng(searchControl._markerLoc.getLatLng());
+		markerNight2030.setLatLng(searchControl._markerLoc.getLatLng());
+	    });
+	    markerDay2030.on('drag', function (e) {
+                searchControl._markerLoc.setLatLng(markerDay2030.getLatLng());
+                markerNight2012.setLatLng(searchControl._markerLoc.getLatLng());
+                markerNight2030.setLatLng(searchControl._markerLoc.getLatLng());
+            });
+	    markerNight2030.on('drag', function (e) {
+                searchControl._markerLoc.setLatLng(markerNight2030.getLatLng());
+                markerNight2012.setLatLng(searchControl._markerLoc.getLatLng());
+                markerDay2030.setLatLng(searchControl._markerLoc.getLatLng());
+            });
+        }
+    });
+
+    searchControl._markerLoc.on('drag', function (e) {
+	markerNight2012.setLatLng(searchControl._markerLoc.getLatLng());
+	markerDay2030.setLatLng(searchControl._markerLoc.getLatLng());
+	markerNight2030.setLatLng(searchControl._markerLoc.getLatLng());
+    });
+
+    // TODO:
+    // 1. check if searchControl._markerLoc.getLatLng() is inside any of the polygons in the noise data for each year
+    // 2.1. If it is inside a polygon then show dB data in a popup on the corresponding map. 
+    // 2.2. If it is not then show "< 45 dB" on the corresponding map.
+    //marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
 
     function getColor(i) {
 	return i == 0 ? '#ffeda0' :
