@@ -1,0 +1,19 @@
+<!DOCTYPE connections>
+<qgsWFSConnections version="1.0">
+    <wfs password="" referer="" username="" url="http://geodata.havochvatten.se/geoservices/hav-fiskforekomster/ows" name="Swedish Agency for Marine and Water Management authority - fish catch"/>
+    <wfs password="" referer="" username="" url="http://geodata.havochvatten.se/geoservices/hav-biogeografiskaregioner/ows?" name="Swedish Agency for Marine and Water Management - fresh water ecosystems"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_is/wms?" name="Swedish Meteorological and Hydrological Institute - Ice"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_moln/wms?" name="Swedish Meteorological and Hydrological Institute - Clouds"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_nederbord/wms?" name="Swedish Meteorological and Hydrological Institute - Rainfall"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/oc-obs/ows?" name="Swedish Meteorological and Hydrological Institute - Oceanography"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_sno/wms?" name="Swedish Meteorological and Hydrological Institute - Snow"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_solskenstid/wms?" name="Swedish Meteorological and Hydrological Institute - Sun"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_spridningsklimat/wms?" name="Swedish Meteorological and Hydrological Institute - Climate changes, winter and summer"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_temperatur/wms?" name="Swedish Meteorological and Hydrological Institute - Temperature"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/SMHI_vatten/wms?" name="Swedish Meteorological and Hydrological Institute - Drainage system"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_vegatation/wms?" name="Swedish Meteorological and Hydrological Institute - Vegetation"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_vind/wms?" name="Swedish Meteorological and Hydrological Institute - Wind"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_angtryck/wms?" name="Swedish Meteorological and Hydrological Institute - Atmospheric pressure"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_arstidstart/wms?" name="Swedish Meteorological and Hydrological Institute - Season changes"/>
+    <wfs password="" referer="" username="" url="http://opendata-view.smhi.se/klim-stat_aska/wms?" name="Swedish Meteorological and Hydrological Institute - Thunderstorms"/>
+</qgsWFSConnections>
