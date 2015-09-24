@@ -44,7 +44,10 @@
           key: published_spreadsheet_url,
           element: "map",
           popupTemplate: template,
-          provider: Mapsheet.Providers.Leaflet
+          provider: Mapsheet.Providers.Leaflet,
+          markerOptions: {
+            iconSize: [40, 40]
+          }
         });
       });
     </script>
