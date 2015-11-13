@@ -21,9 +21,9 @@ var mmlOrtoLayer = L.tileLayer('http://tiles.kartat.kapsi.fi/ortokuva/{z}/{x}/{y
 });
 
 var baseMaps = {
-    "Taustakartta, Maanmittauslaitos": mmlTaustaLayer,
     "OpenStreetMap": osmLayer,
-    "Ilmakuva, MML / kartat.kapsi.fi": mmlOrtoLayer,
+    "Taustakartta, Maanmittauslaitos": mmlTaustaLayer,
+    "Ilmakuva, Maanmittauslaitos": mmlOrtoLayer,
     "Pyöräily, Thunderforest": osmCycleLayer
 }
 
@@ -75,7 +75,7 @@ $(document).ready(function(){
 	    heatmapLayer = new HeatmapOverlay(cfg);
 	    console.log(heatmapLayer);
 
-	    var map = L.map('map_canvas', {layers: [mmlTaustaLayer, heatmapLayer]}).setView([INITIAL_LAT, INITIAL_LON], 12);
+	    var map = L.map('map_canvas', {layers: [osmLayer, heatmapLayer]}).setView([INITIAL_LAT, INITIAL_LON], 12);
 
 	    L.control.layers(baseMaps).addTo(map);
 	    map.on('baselayerchange', function(event) {
