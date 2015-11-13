@@ -211,7 +211,7 @@ function addMarkers(data) {
     });
 
     for (var i = 0; i < data.length; i++) {
-	var marker = L.marker([data[i].lat, data[i].lng], {title: data[i].name, icon: data[i].visits == 0 ? redIcon : blueIcon }).bindPopup('<p>' + data[i].name + '<br>' + data[i].visits + ' käyntiä<p>').addTo(map);
+	var marker = L.marker([data[i].lat, data[i].lng], {title: data[i].name + ' (' + data[i].visits + ')', icon: data[i].visits == 0 ? redIcon : blueIcon }).bindPopup('<p>' + data[i].name + '<br>' + data[i].visits + ' käyntiä<p>').addTo(map);
 	all_markers.push(marker);
     }
 }
