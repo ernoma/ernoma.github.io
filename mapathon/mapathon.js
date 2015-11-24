@@ -22,9 +22,6 @@ var baseMaps = {
 var unclassifiedHighways = [];
 var unclassifiedHighwayNodes = [];
 
-var totalUnclassifiedHighwaysLength = 0;
-//var temp2 = 0;
-
 $(document).ready(function () {
     
     var latSum = 0;
@@ -143,33 +140,31 @@ function calculateRoadStatistics(elements, htmlElementID, mapLineColor) {
 		}
 	    }
 	}
-	var polyLine = L.polyline(latLngs, {weight: 2, color: mapLineColor});
-	var linkText = highWay.tags.highway + ' road, id: ' + highWay.id;
-	//var linkText = '<a href="http://www.openstreetmap.org/way/' + highWay.id + '" target="_blank">View on openstreetmap.org</a>';
-	polyLine.bindPopup(linkText);
-	polyLine.addTo(map);
+	if (highWay.id != 26239440) {
+	    var polyLine = L.polyline(latLngs, {weight: 2, color: mapLineColor});
+	    var linkText = highWay.tags.highway + ' road, id: ' + highWay.id;
+	    //var linkText = '<a href="http://www.openstreetmap.org/way/' + highWay.id + '" target="_blank">View on openstreetmap.org</a>';
+	    polyLine.bindPopup(linkText);
+	    polyLine.addTo(map);
 	
-	var temp = 0;
-	for (var j = 0; j < latLngs.length - 1; j++) {
-	    var lat1 = latLngs[j].lat;
-	    var lon1 = latLngs[j].lng;
-	    var lat2 = latLngs[j+1].lat;
-	    var lon2 = latLngs[j+1].lng;
-	    //roadDistance += getDistanceFromLatLonInMeters(lat1,lon1,lat2,lon2);
-	    roadDistance += distance(lat1,lon1,lat2,lon2) * 1000;
+	    for (var j = 0; j < latLngs.length - 1; j++) {
+		var lat1 = latLngs[j].lat;
+		var lon1 = latLngs[j].lng;
+		var lat2 = latLngs[j+1].lat;
+		var lon2 = latLngs[j+1].lng;
+		//roadDistance += getDistanceFromLatLonInMeters(lat1,lon1,lat2,lon2);
+		roadDistance += distance(lat1,lon1,lat2,lon2) * 1000;
+	    }
+	    //if (highWay.id == 381407386) {
+	    //    console.log(highWay);
+	    //    console.log(latLngs);
+	    //}
+	    totalRoadLength += roadDistance;
 	}
-	//if (highWay.id == 381407386) {
-	//    console.log(highWay);
-	//    console.log(latLngs);
-	//}
-	//console.log("" + highWay.id + ", 1: " + roadDistance + ", 2: " + temp);
-	totalRoadLength += roadDistance;
-	//temp2 += temp;
     }
     
     $(htmlElementID).text("" + Math.round(totalRoadLength / 1000) + " km");
     //console.log(totalRoadLength);
-    //console.log(temp2);
 }
 
 //                                                                                                                          
