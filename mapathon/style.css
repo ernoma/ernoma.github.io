@@ -11,3 +11,5 @@ html,body {
 h2 {
     font-size: large;
 }
+
+.top-buffer { margin-top:20px; }

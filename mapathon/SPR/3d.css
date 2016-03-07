@@ -1,0 +1,24 @@
+/* CSS definitions for the Tampere area map page, traffic light junction map page, and the about page. */
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+  //padding-top: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#Stats-output {
+    position: absolute;
+    top: 50px;
+    z-index: 100;
+}
+
+#webgl {
+    width: 100%;
+    height: calc(100% - 16px);
+    z-index: 1;
+}

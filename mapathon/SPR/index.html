@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Humanitarian OpenStreetMap Mapathon @ SPR Statistics</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+    <link rel="stylesheet" href="/lib/font-awesome-4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class="container">
+      
+      <h1>Humanitarian OpenStreetMap Mapathon @ SPR Statistics</h1>
+
+      <p>Some statistics of our effort for the <a href="https://tasks.hotosm.org/project/1588">#1588 - Zone two of epidemic meningitis Togo</a> task.</p>
+
+      <div id="map_canvas"></div>
+      <div id="statistics">
+	<div class="container">
+	  <h2>Data Created on 5th of March 2016 from 10:00 to 24:00 (in Finnish Time)</h2>
+	  <div class="row">
+	    <div class="col-md-3">Unclassified roads, total length</div>
+	    <div class="col-md-3" id="un_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+            <div class="col-md-3">Residental roads, total length</div>
+            <div class="col-md-3" id="res_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+          </div>
+	  <div class="row">
+            <div class="col-md-3">Tracks, total length</div>
+            <div class="col-md-3" id="track_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+            <div class="col-md-3">Paths, total length</div>
+            <div class="col-md-3" id="path_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+          </div>
+	  <div class="row top-buffer">
+            <div class="col-md-3">Roads and paths, total length</div>
+            <div class="col-md-3" id="roads_total_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+	  <hr>
+	  <div class="row">
+            <div class="col-md-3">Residential areas, total count</div>
+            <div class="col-md-3"id="res_area_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+	  <div class="row">
+            <div class="col-md-3">Residential areas, total area</div>
+            <div class="col-md-3" id="res_area_total_area_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+	  <div class="row">
+            <div class="col-md-3">Residential areas, average area</div>
+            <div class="col-md-3" id="res_area_avg_area_div"><i class="fa fa-spinner fa-pulse"></i></div>
+          </div>
+	  <hr>
+	  <div class="row">
+	    <div class="col-md-3">Buildings, total count</div>
+            <div class="col-md-3"id="building_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+	</div>
+      </div>
+    </div>
+    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="/lib/d3/d3.min.js"></script>
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script type="text/javascript" src="/lib/Leaflet.draw-0.2.4/dist/leaflet.draw.js"></script>
+    <script type="text/javascript" src="/lib/shramov-leaflet-plugins/layer/tile/Bing.js"></script>
+    <script type="text/javascript" src="mapathon.js"></script>
+    <!--<script type="text/javascript" src="tile_calc.js"></script>-->
+  </body>
+</html>
