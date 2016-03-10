@@ -9,7 +9,12 @@ html,body {
 }
 
 h2 {
+    font-size: x-large;
+}
+
+h3 {
     font-size: large;
 }
+
 
 .top-buffer { margin-top:20px; }

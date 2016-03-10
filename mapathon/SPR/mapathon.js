@@ -54,40 +54,108 @@ $(document).ready(function () {
 
 	showPriorityAreas();
 
-	$.getJSON("highways_unclassified.json", function (result) {
-	    
-	    var lengthSum = 0;
-	    //console.log(result);
-	    lengthSum = calculateRoadStatistics(result.elements, "#un_road_length_div", '#000', 2, null);	    
-	    $.getJSON("highways_residential.json", function (result) {
-		//console.log(result);
-		lengthSum += calculateRoadStatistics(result.elements, "#res_road_length_div", '#FFF', 4, null);
-		$.getJSON("highways_track.json", function (result) {
-		    //console.log(result);
-		    lengthSum += calculateRoadStatistics(result.elements, "#track_road_length_div", '#E7D4A0', 3, "5 1");
-		    $.getJSON("highways_path.json", function (result) {
-			//console.log(result);
-			lengthSum += calculateRoadStatistics(result.elements, "#path_road_length_div", '#E7D4A0', 4, "5 5");
-			$("#roads_total_length_div").text("" + Math.round(lengthSum / 1000) + " km");
-			
-		    });
+	$.getJSON("buildings_meta.json", function (result) {
+	    var userNames = findUsers(result.elements);
+
+	    $.getJSON("highways_path_meta.json", function (result) {
+		var temp = findUsers(result.elements);
+		addUsers(userNames, temp);
+
+		$.getJSON("highways_residential_meta.json", function (result) {
+                    var temp = findUsers(result.elements);
+                    addUsers(userNames, temp);
+
+		    $.getJSON("highways_track_meta.json", function (result) {
+			var temp = findUsers(result.elements);
+			addUsers(userNames, temp);
+
+			$.getJSON("highways_unclassified_meta.json", function (result) {
+			    var temp = findUsers(result.elements);
+			    addUsers(userNames, temp);
+
+			    $.getJSON("landuse_residential_meta.json", function (result) {
+				var temp = findUsers(result.elements);
+				addUsers(userNames, temp);
+
+
+
+				//console.log(userNames.length);
+
+				$("#users_heading").html("Contributions by " + userNames.length + " Persons");
+				$("#users_div").html("");
+				for (var i = 0; i < userNames.length; i++) {
+				//    console.log(userNames[i]);
+				    var div = '<div class="col-md-2"><a target="_blank" href="http://tasks.hotosm.org/user/' + userNames[i] + '">' + userNames[i] + '</a></div>';
+				    $("#users_div").append(div);
+				}
+			    });
+			});
+                    });
 		});
 	    });
 	});
-
-
-	$.getJSON("landuse_residential.json", function (result) {
-            //console.log(result);
-	    calculateResidentialAreaStatistics(result.elements);
-	});
-
-	 $.getJSON("buildings.json", function (result) {
-            //console.log(result);
-            calculateBuildingStatistics(result.elements);
-        });
     });
 
+    $.getJSON("highways_unclassified.json", function (result) {
+	    
+	var lengthSum = 0;
+	//console.log(result);
+	lengthSum = calculateRoadStatistics(result.elements, "#un_road_length_div", '#000', 2, null);	    
+	$.getJSON("highways_residential.json", function (result) {
+	    //console.log(result);
+	    lengthSum += calculateRoadStatistics(result.elements, "#res_road_length_div", '#FFF', 4, null);
+	    $.getJSON("highways_track.json", function (result) {
+		//console.log(result);
+		lengthSum += calculateRoadStatistics(result.elements, "#track_road_length_div", '#E7D4A0', 3, "5 1");
+		$.getJSON("highways_path.json", function (result) {
+		    //console.log(result);
+		    lengthSum += calculateRoadStatistics(result.elements, "#path_road_length_div", '#E7D4A0', 4, "5 5");
+		    $("#roads_total_length_div").text("" + Math.round(lengthSum / 1000) + " km");
+		    
+		});
+	    });
+	});
+    });
+    
+    $.getJSON("landuse_residential.json", function (result) {
+        //console.log(result);
+	calculateResidentialAreaStatistics(result.elements);
+    });
+    
+    $.getJSON("buildings.json", function (result) {
+        //console.log(result);
+        calculateBuildingStatistics(result.elements);
+    });
 });
+
+function addUsers(userNames, source) {
+    for (var i = 0; i < source.length; i++) {
+        if (userNames.indexOf(source[i]) == -1) {
+            userNames.push(source[i]);
+        }
+    }
+    return userNames;
+}
+
+function findUsers(elements) {
+    var userNames = [];
+
+    for (var i = 0; i < elements.length; i++) {
+	if (elements[i].type == "way") {
+	    var editDate = Date.parse(elements[i].timestamp);
+	    var date = new Date(editDate);
+	    
+	    if (date.getFullYear() == 2016 && date.getMonth() == 2 && date.getDate() == 5 && date.getHours() >= 10) {
+		if (userNames.indexOf(elements[i].user) == -1) {
+		    userNames.push(elements[i].user);
+		    //console.log(elements[i].user);
+		}
+	    }
+	}
+    }
+
+    return userNames;
+}
 
 function showPriorityAreas() {
     var priority_areas = {"type": "FeatureCollection", "features": [{"geometry": {"type": "Polygon", "coordinates": [[[0.806121826171875, 9.352867708269317], [0.729217529296875, 9.325765958926807], [0.7196044921874999, 9.233604298380849], [0.7525634765625, 9.17124596242516], [0.81573486328125, 9.197003998984497], [0.863800048828125, 9.25529157227662], [0.84320068359375, 9.329831355689189], [0.806121826171875, 9.352867708269317]]]}, "type": "Feature", "id": null, "properties": {}}, {"geometry": {"type": "Polygon", "coordinates": [[[0.736083984375, 9.43957908942936], [0.79376220703125, 9.385387020096225], [0.8802795410156249, 9.393516371824855], [0.888519287109375, 9.499180522706919], [0.789642333984375, 9.55606312481075], [0.720977783203125, 9.501889432784711], [0.736083984375, 9.43957908942936]]]}, "type": "Feature", "id": null, "properties": {}}, {"geometry": {"type": "Polygon", "coordinates": [[[0.6207275390625, 9.768611091236496], [0.534210205078125, 9.725300127953927], [0.52459716796875, 9.634599651357629], [0.591888427734375, 9.557417356841308], [0.718231201171875, 9.60074993224686], [0.736083984375, 9.722593006167342], [0.6207275390625, 9.768611091236496]]]}, "type": "Feature", "id": null, "properties": {}}]};
@@ -105,14 +173,29 @@ function calculateBuildingStatistics(elements) {
     var buildingNonEmptyCount = 0;
     //var totalArea = 0;
 
+    var IDs = [];
+    var duplicateIDCount = 0;
+    
+
     for (var i = 0; i < elements.length; i++) {
         if (elements[i].type == "way") {
             buildings.push(elements[i]);
+
+	    if (IDs.indexOf(elements[i].id) != -1) {
+		duplicateIDCount++;
+	    }
+	    else {
+		IDs.push(elements[i].id);
+	    }
         }
         else if(elements[i].type == "node") {
             buildingNodes.push(elements[i]);
         }
     }
+
+    console.log(buildings.length);
+    console.log(duplicateIDCount);
+    console.log("Building duplicate %: " + (duplicateIDCount / buildings.length * 100)); 
 
     for (var i = 0; i < buildings.length; i++) {
         var building = buildings[i];
@@ -149,14 +232,28 @@ function calculateResidentialAreaStatistics(elements) {
     var residentialAreaNonEmptyCount = 0;
     var totalArea = 0;
 
+    var IDs = [];
+    var duplicateIDCount = 0;
+
     for (var i = 0; i < elements.length; i++) {
         if (elements[i].type == "way") {
             residentialAreas.push(elements[i]);
+
+	    if (IDs.indexOf(elements[i].id) != -1) {
+                duplicateIDCount++;
+            }
+            else {
+                IDs.push(elements[i].id);
+            }
         }
         else if(elements[i].type == "node") {
             residentialAreaNodes.push(elements[i]);
         }
     }
+
+    console.log(residentialAreas.length);
+    console.log(duplicateIDCount);
+    console.log("Residential area duplicate %: " + (duplicateIDCount / residentialAreas.length * 100));
 
     for (var i = 0; i < residentialAreas.length; i++) {
         var residentialArea = residentialAreas[i];
@@ -192,15 +289,29 @@ function calculateRoadStatistics(elements, htmlElementID, mapLineColor, weight, 
     var highwayNodes = [];
     var totalRoadLength = 0;
     
+    var IDs = [];
+    var duplicateIDCount = 0;
+
     for (var i = 0; i < elements.length; i++) {
 	if (elements[i].type == "way") {
 	    highWays.push(elements[i]);
+
+	    if (IDs.indexOf(elements[i].id) != -1) {
+                duplicateIDCount++;
+            }
+            else {
+                IDs.push(elements[i].id);
+            }
 	}
 	else if(elements[i].type == "node") {
 	    highwayNodes.push(elements[i]);
 	}
     }
-    //console.log(highWays.length);
+
+    console.log(highWays.length);
+    console.log(duplicateIDCount);
+    console.log("Highway duplicate %: " + (duplicateIDCount / highWays.length * 100));
+
     //console.log(highwayNodes.length);
     for (var i = 0; i < highWays.length; i++) {
 	var highWay = highWays[i];
