@@ -20,7 +20,7 @@ function getProjects() {
 	    }
 	});*/
 
-	for (var i = 0; i < data.features.length && i < 50; i++) {
+	for (var i = 0; i < data.features.length && i < 10; i++) {
 	    var polygons = data.features[i].geometry.coordinates;
 	    //console.log(polygons);
 
