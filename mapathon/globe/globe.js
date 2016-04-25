@@ -20,7 +20,7 @@ function getProjects() {
 	    }
 	});*/
 
-	for (var i = 0; i < data.features.length && i < 10; i++) {
+	for (var i = 0; i < data.features.length && i < 100; i++) {
 	    var polygons = data.features[i].geometry.coordinates;
 	    //console.log(polygons);
 
@@ -40,7 +40,7 @@ function getProjects() {
 		    maxLat = polygons[j][0][k][1] > maxLat ? polygons[j][0][k][1] : maxLat;
 		    reversed.push(polygons[j][0][k].reverse());
 		}
-		WE.polygon(reversed, {color: '#a00', fillColor: '#c00', opacity: 1, fillOpacity: 0.7, weight: 1}).addTo(earth);
+		//WE.polygon(reversed, {color: '#a00', fillColor: '#c00', opacity: 1, fillOpacity: 0.7, weight: 1}).addTo(earth);
 	    }
 	    
 	    //console.log([minLat, maxLat, minLng, maxLng]);
