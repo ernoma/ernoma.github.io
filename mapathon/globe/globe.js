@@ -10,7 +10,7 @@ $(document).ready(function () {
 });
 
 function getProjects() {
-    $.getJSON('https://tasks.hotosm.org/projects.json', function (data) {
+    $.getJSON('https://loseourway.herokuapp.com/hotosmprojects.json', function (data) {
 	console.log(data);
 
 	/*L.geoJson(data, {
