@@ -19,3 +19,7 @@ h3 {
 .top-buffer { margin-top:20px; }
 
 .bottom-buffer { margin-bottom:20px; }
+
+#data_note {
+    margin-top: 20px;
+}

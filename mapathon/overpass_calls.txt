@@ -1,4 +1,6 @@
 
+PLEASE,	install	your own Overpass API instance if you plan to run these	queries, because they consume _a lot_ of memory and time resources. Installation instructions: http://overpass-api.de/full_installation.html. 
+
 Get unclassified highways and their nodes on the worked area starting from the mapathon start time (21.11.2015 at 10:30 Finnish time) to end of the day (in Finnish time):
 
 [out:json][diff:"2015-11-21T08:30:00Z","2015-11-21T22:00:00Z"];
