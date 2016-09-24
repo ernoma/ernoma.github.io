@@ -432,27 +432,31 @@ function calculateResidentialAreaStatistics(elements) {
 }
 
 function calculateWaterwayStatistics(elements, lengthHtmlElementID, countHtmlElementID, mapLineColor, weight, dashArray) {
-    return calculateRoadStatistics(elements, lengthHtmlElementID, countHtmlElementID, mapLineColor, weight, dashArray);
+    return calculateWayStatistics(elements, lengthHtmlElementID, countHtmlElementID, mapLineColor, weight, dashArray);
 }
 
 function calculateRoadStatistics(elements, lengthHtmlElementID, countHtmlElementID, mapLineColor, weight, dashArray) {
-    var highwayNodes = [];
-    var highWaysCount = 0;
-    var totalRoadLength = 0;
+    return calculateWayStatistics(elements, lengthHtmlElementID, countHtmlElementID, mapLineColor, weight, dashArray);
+}
+
+function calculateWayStatistics(elements, lengthHtmlElementID, countHtmlElementID, mapLineColor, weight, dashArray) {
+    var wayNodes = [];
+    var waysCount = 0;
+    var totalWayLength = 0;
     
     var IDs = [];
     var duplicateIDCount = 0;
 
-    var highWayObjects = {};
+    var wayObjects = {};
 
     for (var i = 0; i < elements.length; i++) {
 	if (elements[i].type == "way") {
-	    highWaysCount++;
-	    if (highWayObjects[elements[i].id] != undefined) { // Show only created highways i.e. those that are only once in the elements array.
-		delete highWayObjects[elements[i].id];
+	    waysCount++;
+	    if (wayObjects[elements[i].id] != undefined) { // Show only created ways i.e. those that are only once in the elements array.
+		delete wayObjects[elements[i].id];
 	    }
 	    else {
-		highWayObjects[elements[i].id] = elements[i];
+		wayObjects[elements[i].id] = elements[i];
 	    }
 
 	    if (IDs.indexOf(elements[i].id) != -1) {
@@ -463,38 +467,44 @@ function calculateRoadStatistics(elements, lengthHtmlElementID, countHtmlElement
             }
 	}
 	else if(elements[i].type == "node") {
-	    highwayNodes.push(elements[i]);
+	    wayNodes.push(elements[i]);
 	}
     }
 
-    //console.log(highWays.length);
     //console.log(duplicateIDCount);
     var duplicatePercentage = 0;
-    if (highWaysCount > 0) {
-	duplicatePercentage = (duplicateIDCount / highWaysCount * 100);
+    if (waysCount > 0) {
+	duplicatePercentage = (duplicateIDCount / waysCount * 100);
     }
-    //console.log("Highway duplicate %: " + duplicatePercentage);
+    //console.log("Way duplicate %: " + duplicatePercentage);
 
-    //console.log(highwayNodes.length);
-    for (var key in highWayObjects) {
-	var highWay = highWayObjects[key];
-	var roadDistance = 0;
+    //console.log(wayNodes.length);
+    for (var key in wayObjects) {
+	var wayObject = wayObjects[key];
+	var wayDistance = 0;
 	var latLngs = [];
-	for (var j = 0; j < highWay.nodes.length; j++) {
-	    for (var k = 0; k < highwayNodes.length; k++) {
-		if (highWay.nodes[j] == highwayNodes[k].id) {
-		    latLngs.push(L.latLng(highwayNodes[k].lat, highwayNodes[k].lon));
+	for (var j = 0; j < wayObject.nodes.length; j++) {
+	    for (var k = 0; k < wayNodes.length; k++) {
+		if (wayObject.nodes[j] == wayNodes[k].id) {
+		    latLngs.push(L.latLng(wayNodes[k].lat, wayNodes[k].lon));
 		    break;
 		}
 	    }
 	}
 	var polyLine = L.polyline(latLngs, {weight: weight, color: mapLineColor, dashArray: dashArray });
-	var highwayTextSuffix = "";
-	if (highWay.tags.highway != "track" && highWay.tags.highway != "path") {
-	    highwayTextSuffix = " road";
+	var wayTextSuffix = "";
+	var linkText = "";
+	if (wayObject.tags.highway != undefined) {
+	    if (wayObject.tags.highway != "track" && wayObject.tags.highway != "path") {
+		wayTextSuffix = " road";
+	    }
+	    linkText = wayObject.tags.highway + wayTextSuffix + ', id: ' + wayObject.id;
+	    //var linkText = '<a href="http://www.openstreetmap.org/way/' + wayObject.id + '" target="_blank">View on openstreetmap.org</a>';
 	}
-	var linkText = highWay.tags.highway + highwayTextSuffix + ', id: ' + highWay.id;
-	//var linkText = '<a href="http://www.openstreetmap.org/way/' + highWay.id + '" target="_blank">View on openstreetmap.org</a>';
+	else if (wayObject.tags.waterway != undefined) {
+	    linkText = wayObject.tags.waterway + wayTextSuffix + ', id: ' + wayObject.id;
+	    //console.log(linkText);
+	}
 	polyLine.bindPopup(linkText);
 	polyLine.addTo(map);
 	
@@ -503,21 +513,21 @@ function calculateRoadStatistics(elements, lengthHtmlElementID, countHtmlElement
 	    var lon1 = latLngs[j].lng;
 	    var lat2 = latLngs[j+1].lat;
 	    var lon2 = latLngs[j+1].lng;
-	    roadDistance += distance(lat1,lon1,lat2,lon2) * 1000;
+	    wayDistance += distance(lat1,lon1,lat2,lon2) * 1000;
 	}
 
-	totalRoadLength += roadDistance;
+	totalWayLength += wayDistance;
     }
     
-    var length = totalRoadLength / 1000;
+    var length = totalWayLength / 1000;
     var text = "" + length.toFixed(1) + " km";
     $(lengthHtmlElementID).text(text);
-    //console.log(totalRoadLength);
+    //console.log(totalWayLength);
 
-    text = "" + (highWaysCount - duplicateIDCount) + ", +" + duplicateIDCount + " modified (" + duplicatePercentage.toFixed(1) + "%)";
+    text = "" + (waysCount - duplicateIDCount) + ", +" + duplicateIDCount + " modified (" + duplicatePercentage.toFixed(1) + "%)";
     $(countHtmlElementID).text(text);
 
-    return { "length": totalRoadLength, "createdCount": (highWaysCount - duplicateIDCount), "duplicateCount": duplicateIDCount };
+    return { "length": totalWayLength, "createdCount": (waysCount - duplicateIDCount), "duplicateCount": duplicateIDCount };
 }
 
 function distance(lat1, lon1, lat2, lon2) {
