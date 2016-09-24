@@ -59,15 +59,30 @@ $(document).ready(function () {
 	    //console.log(userNames.length);
 	    //console.log(userNames);
 
-	    userNames = userNames.sort();
+	    userNames = userNames.sort(function (a, b) {
+		return a.toLowerCase().localeCompare(b.toLowerCase());
+	    });
 			    
 	    $("#users_heading").html("Contributions by " + userNames.length + " Persons");
 	    $("#users_div").html("");
+
+	    //var words = [];
+
 	    for (var i = 0; i < userNames.length; i++) {
 		//    console.log(userNames[i]);
 		var div = '<div class="col-md-2"><a target="_blank" href="http://tasks.hotosm.org/user/' + userNames[i] + '">' + userNames[i] + '</a></div>';
 		$("#users_div").append(div);
+
+		//words.push({text: userNames[i], weight: 0.02});
 	    }
+	    /*$("#users_div").jQCloud(words, {
+		autoResize: true,
+		shape: "rectangular",
+		fontSize: {
+		    from: 0.04,
+		    to: 0.02
+		}
+	    });*/
 	});
 
 	/*$.getJSON("highways_unclassified_meta.json", function (result) {
