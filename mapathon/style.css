@@ -23,3 +23,14 @@ h3 {
 #data_note {
     margin-top: 20px;
 }
+
+hr {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: dashed;
+    border-width: 1px;
+    
+}
