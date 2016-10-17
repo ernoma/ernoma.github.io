@@ -50,7 +50,7 @@ $(document).ready(function () {
 
 	var areaPoly = L.polygon(latLngs, { color: '#54cc54', fill: false });
 	areaPoly.addTo(map);
-	map.setView([centerLat, centerLng], 8);
+	map.setView([centerLat, centerLng], 11);
 
 	//showPriorityAreas();
 
