@@ -1,0 +1,3 @@
+# original OSM minutely replication sequence number 2308915
+timestamp=2017-02-08T21\:43\:02Z
+sequenceNumber=860
