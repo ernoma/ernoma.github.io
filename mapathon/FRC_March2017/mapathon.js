@@ -108,10 +108,17 @@ function createRoadStatistics(data_dirs) {
 	highwayJSONCalls.tertiary.push(readJSONData(data_dirs[d], "highways_tertiary.json"));
 	highwayJSONCalls.unclassified.push(readJSONData(data_dirs[d], "highways_unclassified.json"));
 	highwayJSONCalls.residential.push(readJSONData(data_dirs[d], "highways_residential.json"));
+<<<<<<< HEAD
 	//highwayJSONCalls.service.push(readJSONData(data_dirs[d], "highways_service.json"));
 	highwayJSONCalls.track.push(readJSONData(data_dirs[d], "highways_track.json"));
 	highwayJSONCalls.path.push(readJSONData(data_dirs[d], "highways_path.json"));
 	//highwayJSONCalls.footway.push(readJSONData(data_dirs[d], "highways_footway.json"));
+=======
+	highwayJSONCalls.service.push(readJSONData(data_dirs[d], "highways_service.json"));
+	highwayJSONCalls.track.push(readJSONData(data_dirs[d], "highways_track.json"));
+	highwayJSONCalls.path.push(readJSONData(data_dirs[d], "highways_path.json"));
+	highwayJSONCalls.footway.push(readJSONData(data_dirs[d], "highways_footway.json"));
+>>>>>>> d6a784db4f33542fc0b5999f7020dd3c492efbda
 	highwayJSONCalls.road.push(readJSONData(data_dirs[d], "highways_road.json"));
     }
     
@@ -120,10 +127,17 @@ function createRoadStatistics(data_dirs) {
     $.when.apply($, highwayJSONCalls.tertiary).done(handleRoadStatisicsData("#tertiary_road_length_div", "#tertiary_road_count_div", '#FFFF00', 3, null));
     $.when.apply($, highwayJSONCalls.unclassified).done(handleRoadStatisicsData("#un_road_length_div", "#un_road_count_div", '#000', 2, null));
     $.when.apply($, highwayJSONCalls.residential).done(handleRoadStatisicsData("#res_road_length_div", "#res_road_count_div", '#FFF', 2, null));
+<<<<<<< HEAD
     //$.when.apply($, highwayJSONCalls.service).done(handleRoadStatisicsData("#service_road_length_div", "#service_road_count_div", '#FFF', 2, null));
     $.when.apply($, highwayJSONCalls.track).done(handleRoadStatisicsData("#tracks_length_div", "#tracks_count_div", '#D27259', 2, "5 2"));
     $.when.apply($, highwayJSONCalls.path).done(handleRoadStatisicsData("#paths_length_div", "#paths_count_div", '#D29259', 2, "5 5"));
     //$.when.apply($, highwayJSONCalls.footway).done(handleRoadStatisicsData("#footway_length_div", "#footway_count_div", '#D29200', 2, "3 5"));
+=======
+    $.when.apply($, highwayJSONCalls.service).done(handleRoadStatisicsData("#service_road_length_div", "#service_road_count_div", '#FFF', 2, null));
+    $.when.apply($, highwayJSONCalls.track).done(handleRoadStatisicsData("#tracks_length_div", "#tracks_count_div", '#D27259', 2, "5 2"));
+    $.when.apply($, highwayJSONCalls.path).done(handleRoadStatisicsData("#paths_length_div", "#paths_count_div", '#D29259', 2, "5 5"));
+    $.when.apply($, highwayJSONCalls.footway).done(handleRoadStatisicsData("#footway_length_div", "#footway_count_div", '#D29200', 2, "3 5"));
+>>>>>>> d6a784db4f33542fc0b5999f7020dd3c492efbda
     $.when.apply($, highwayJSONCalls.road).done(handleRoadStatisicsData("#highway_road_length_div", "#highway_road_count_div", '#FFA', 2, null));
 }
 
