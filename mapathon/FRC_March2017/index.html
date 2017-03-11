@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monthly Missing Maps Mapathon at Finnish Red Cross HQ - March 2017</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css">
+    <link rel="stylesheet" href="/lib/font-awesome-4.5.0/css/font-awesome.min.css">
+    <!--<link rel="stylesheet" href="/lib/jqcloud/jqcloud.min.css">-->
+    <link rel="stylesheet" href="../style.css">
+  </head>
+  <body>
+    <div class="container bottom-buffer">
+      
+      <h1>Monthly Missing Maps Mapathon at Finnish Red Cross HQ - March 2017</h1>
+      
+      <p>Data created on 9th of March 2017 from 17:00 to 23:43 (Finnish winter time).</p>
+      
+      <p>Some statistics for our contributions on the <a href="http://tasks.hotosm.org/project/2011">#2011 - Missing Maps: Quảng Ngãi, Vietnam - Part 4</a> task.</p>
+
+      <h2 id="users_heading">Edits by</h2>
+      
+      <div class="row" id="users_div">
+	<div class="col-md-1"><i class="fa fa-spinner fa-pulse"></i></div>
+      </div>
+      
+      <h2>Map of the Created Objects</h2>
+
+      <div id="map_canvas"></div>
+      <div id="statistics">
+	
+	<h2>Statistics</h2>
+	
+	<h3>Buildings</h3>
+	
+	<div class="row top-buffer bottom-buffer">
+	  <div class="col-md-3">Buildings, total count</div>
+          <div class="col-md-9"id="building_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	
+	<hr>
+	
+        <h3>Roads and Paths</h3>
+
+	<div class="row">
+	  <div class="col-md-3">Primary roads created, length</div>
+	  <div class="col-md-3" id="primary_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  <div class="col-md-3">Secondary roads created, length</div>
+	  <div class="col-md-3" id="secondary_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col-md-3">Tertiary roads created, length</div>
+	  <div class="col-md-3" id="tertiary_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  <div class="col-md-3">Unclassified roads created, length</div>
+	  <div class="col-md-3" id="un_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col-md-3">Residential roads created, length</div>
+	  <div class="col-md-3" id="res_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  <!--<div class="col-md-3">Service roads created, length</div>
+	  <div class="col-md-3" id="service_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">-->
+	  <div class="col-md-3">Tracks created, length</div>
+	  <div class="col-md-3" id="tracks_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col-md-3">Paths created, length</div>
+	  <div class="col-md-3" id="paths_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	<!--</div>
+	<div class="row">
+	  <div class="col-md-3">Footways created, length</div>
+	  <div class="col-md-3" id="footway_length_div"><i class="fa fa-spinner fa-pulse"></i></div>-->
+	  <div class="col-md-3">(*) Other roads created, length</div>
+	  <div class="col-md-3" id="highway_road_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row top-buffer">
+	  <div class="col-md-3">Roads created, total length</div>
+	  <div class="col-md-9" id="roads_total_length_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row top-buffer">
+	  <div class="col-md-3">Primary roads, count</div>
+	  <div class="col-md-3" id="primary_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  <div class="col-md-3">Secondary roads, count</div>
+	  <div class="col-md-3" id="secondary_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col-md-3">Tertiary roads, count</div>
+	  <div class="col-md-3" id="tertiary_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  <div class="col-md-3">Unclassified roads, count</div>
+	  <div class="col-md-3" id="un_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col-md-3">Residential roads, count</div>
+	  <div class="col-md-3" id="res_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  <!--<div class="col-md-3">Service roads, count</div>
+	  <div class="col-md-3" id="service_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">-->
+	  <div class="col-md-3">Tracks, count</div>
+	  <div class="col-md-3" id="tracks_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	<div class="row">
+	  <div class="col-md-3">Paths, count</div>
+	  <div class="col-md-3" id="paths_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	<!--</div>
+	<div class="row">
+	  <div class="col-md-3">Footways created, count</div>
+	  <div class="col-md-3" id="footway_count_div"><i class="fa fa-spinner fa-pulse"></i></div>-->
+	  <div class="col-md-3">(*) Other roads created, count</div>
+	  <div class="col-md-3" id="highway_road_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	
+	<div class="row top-buffer bottom-buffer">
+	  <div class="col-md-3">Roads and paths, total count</div>
+	  <div class="col-md-3" id="roads_total_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	</div>
+	
+	<hr>  
+
+	<!--<h3>Residential Areas</h3>
+
+	  <div class="row top-buffer">
+	    <div class="col-md-3">Residential areas, total count</div>
+	    <div class="col-md-9"id="res_area_count_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+	  <div class="row">
+	    <div class="col-md-3">Residential areas, total area</div>
+	    <div class="col-md-9" id="res_area_total_area_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+	  <div class="row bottom-buffer">
+	    <div class="col-md-3">Residential areas, average area</div>
+	    <div class="col-md-9" id="res_area_avg_area_div"><i class="fa fa-spinner fa-pulse"></i></div>
+	  </div>
+
+	  <hr>-->
+	  
+	</div>
+      <hr>
+      <p id="data_note">(*) Other roads means ways that were tagged highway=road, highway=motorway, highway=trunk or highway=living_street. See <a href="http://wiki.openstreetmap.org/wiki/Key:highway">OSM highway tagging page</a> for more information on the types.
+      </p>
+    </div>
+    <script type="text/javascript" src="/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+    <script type="text/javascript" src="/lib/Leaflet.draw-0.2.4/dist/leaflet.draw.js"></script>
+    <script type="text/javascript" src="/lib/shramov-leaflet-plugins/layer/tile/Bing.js"></script>
+    <!--<script type="text/javascript" src="/lib/jqcloud/jqcloud.min.js"></script>-->
+    <script type="text/javascript" src="mapathon.js"></script>
+    <!--<script type="text/javascript" src="tile_calc.js"></script>-->
+  </body>
+</html>
