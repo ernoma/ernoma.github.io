@@ -1,0 +1,1 @@
+{"format":"pbf","vector_layers":[{"description":"","id":"facilities"},{"description":"","id":"hubs"}],"maxzoom":20,"minzoom":1,"name":"HSL Park & Ride","center":[-122.444,37.7908,12],"bounds":[-180,-85.0511,180,85.0511],"tiles":["http://api.digitransit.fi/hsl-parkandride-map/{z}/{x}/{y}.pbf"],"tilejson":"2.0.0"}
