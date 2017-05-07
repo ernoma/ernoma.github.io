@@ -100,7 +100,7 @@ function createRoadStatistics(data_dirs) {
 	road: []
     };
 
-    roadStats.whenApplyCountRemaining = 8;
+    roadStats.whenApplyCountRemaining = 10;
     
     for (var d = 0; d < data_dirs.length; d++) {
 	highwayJSONCalls.primary.push(readJSONData(data_dirs[d], "highways_primary.json"));
